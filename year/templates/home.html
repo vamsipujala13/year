@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Year detection </title>
+    <style>
+        body{
+        background-color: pink;
+        }
+    .container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+/* Style the individual boxes */
+.box1, .box2 {
+    width: 45%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: green;
+}
+
+/* Style form elements */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    background-color: white;
+    color: red;
+    text-align:center;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="number"],
+select {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+p {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+    </style>
+
+</head>
+<body>
+<div class="container">
+    <div class="box1">
+    <form action="year" method="post">
+        {% csrf_token %}
+        <h1>Leap Year Checker</h1>
+        <label for="year">Enter a year:</label>
+        <input type="number" name="year" id="year" placeholder="Enter year" required>
+        <br>
+        <button type="submit" name="btn">Check</button>
+    </form>
+
+    {% if is_leap %}
+        <p>{{ is_leap }}</p>
+    {% endif %}
+    </div>
+<div class="box2">
+    <form action="marriage" method="post">
+        {% csrf_token %}
+        <h1>Marriage Eligiblity</h1>
+           <label>Enter your age:</label>
+        <input type="number" name="age" value="{{ age }}"  placeholder="Enter your age" required>
+        <br>
+        <label >Select your gender:</label>
+        <select name="ddlgender"  required>
+            <option value="Select your gender">Select your gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+        <br>
+        <button type="submit">Check Eligibility</button>
+    </form>
+
+    {% if eligibility_status %}
+        <p>{{ eligibility_status }}</p>
+    {% endif %}
+
+
+</div>
+</div>
+</body>
+</html>
